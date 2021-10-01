@@ -1,22 +1,16 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Article</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{% static 'styles.css' %}">
-    </head>
-    <body>
-        <div class="container">
-            <h1>article list</h1>
-            {% for article in articles %}
-                <h2><a href="#">{{ article.title }}</a></h2>
-                <p>{{ article.snippet }}</p>
-                <p>{{ article.date }}</p>
-            {% endfor %}
-        </div>
-    </body>
-</html>
+
+{% block title %}Article{% endblock  %}
+
+{% block content %}
+    <div class="container">
+        <h1>article list</h1>
+        {% comment %} <img src="{% static 'images/profile.jpg' %}"> {% endcomment %}
+        {% for article in articles %}
+            <h2><a href="{% url 'articles:detail' slug=article.slug %}">{{ article.title }}</a></h2>
+            <p>{{ article.snippet }}</p>
+            <p>{{ article.date }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}
